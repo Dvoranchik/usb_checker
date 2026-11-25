@@ -4,9 +4,6 @@ A single-file bash tool that shows which USB devices are connected right now
 and reconstructs when they were connected before. It only reads system data:
 nothing is installed, nothing is modified.
 
-Documentation: [requirements baseline](SPEC.md) ·
-[history details](HISTORICAL_DATA_GUIDE.md) · [license](LICENSE).
-
 ```console
 $ ./usb_checker.sh
 ...
@@ -32,9 +29,6 @@ $ ./usb_checker.sh
   product and serial, rebuilt from the systemd journal or from syslog.
 - Output: human readable report, CSV (RFC 4180), JSON, self-contained HTML
   with sorting, search and client-side export.
-- FUSB-compatible export: a folder `FUSB_CSV_<timestamp>` with
-  `UsbDevices.csv` and `UsbStor.csv` in the exact layout of the Windows USB
-  audit tool (Windows-1251, `;` separated, CRLF, same headers and file names).
 - No Python, no Perl, no jq: only bash and standard Unix utilities.
 - Works without `udevadm`, without `lsblk`, without `lsusb`, without systemd.
 
@@ -142,10 +136,6 @@ so the same kernel message is never counted twice:
    compressed files are read too);
 3. `dmesg` (timestamps are converted from uptime to wall clock; needs root).
 
-Kernel messages are reduced to events (`new ... USB device`, `Product:`,
-`Manufacturer:`, `SerialNumber:`, `USB disconnect`) and reassembled into
-sessions per USB port. See [HISTORICAL_DATA_GUIDE.md](HISTORICAL_DATA_GUIDE.md)
-for details and for ways to keep more history.
 
 ## Output formats
 
